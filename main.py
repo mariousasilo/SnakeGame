@@ -22,12 +22,12 @@ while game_on:
     snake_x = int(snake.head.xcor())
     snake_y = int(snake.head.ycor())
     if snake_x >= 300 or snake_x <= -300 or snake_y >= 300 or snake_y <= -300:
-        score.game_over()
-        game_on = False
+        score.reset()
+        snake.reset()
 
     for body in snake.segment[1:]:
         if snake.head.distance(body) < 10:
-            score.game_over()
-            game_on = False
+            score.reset()
+            snake.reset()
 
 my_screen.screen.exitonclick()

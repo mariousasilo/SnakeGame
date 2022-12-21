@@ -12,13 +12,16 @@ class Snake:
 
     def __init__(self):
         self.segment = []
+        self.create_snake()
+        self.head = self.segment[0]
+
+    def create_snake(self):
         for x in range(STARTING_SEGMENT):
             x_axis = -20 * x
             self.segment.append(Turtle(SHAPE))
             self.segment[x].color(COLOR)
             self.segment[x].penup()
             self.segment[x].goto(x=x_axis, y=0)
-        self.head = self.segment[0]
 
     def move(self):
         time.sleep(TIME)
@@ -33,6 +36,13 @@ class Snake:
         self.segment[total_segment - 1].color("white")
         self.segment[total_segment - 1].penup()
         self.segment[total_segment - 1].goto(last_segment_pos)
+
+    def reset(self):
+        for x in self.segment:
+            x.goto(x=1000, y=1000)
+        self.segment.clear()
+        self.create_snake()
+        self.head = self.segment[0]
 
     def up_direction(self):
         if self.head.heading() != 270:
